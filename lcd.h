@@ -19,13 +19,13 @@
 /*
  * change to match number of your LCD rows 1 , 2 , 4
  * */
-#define LCD_ROW_NUM 2
+#define LCD_ROW_NUM 4
 /*
  * change to match the connecting mode
  * 4 represents 4 wires connected to R4~7 in LCD
  * 8 represents 8 wires connected to R0~7 in LCD
  * */
-#define LCD_MODE 8
+#define LCD_MODE 4
 /*
  *	comment the #define LCD_4BIT_MODE_UPPER_PORT
  *	if you connects the 4 wires the least significant 4 bits in your micro controller port
@@ -105,7 +105,7 @@ void LCD_displayString(const uint8 *a_string);
  * 															(0~4 for 4 lins LCD)
  * 					  uint8 a_col specifies the LCD columns (0~15)
  * */
-void LCD_goToRowColumn(uint8 a_col , uint8 a_row);
+void LCD_goTo(uint8 a_row , uint8 a_col);
 /*
  * function name 	: LCD_clearScreen
  * description 		: this function clears the LCD

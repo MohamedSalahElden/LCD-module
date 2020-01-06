@@ -140,6 +140,9 @@ void LCD_clearScreen(void){
 
 
 void LCD_displayNumber(uint16 a_num){
+	if(a_num == 0){
+		LCD_characterDisplay('0');
+	}
 	uint8 num_string[16] = {'\0'};
 	uint8 shift = 1;
 	while(a_num > 0){
@@ -155,6 +158,25 @@ void LCD_displayNumber(uint16 a_num){
 }
 
 
-void LCD_goToRowColumn(uint8 a_col , uint8 a_row){
-
+void LCD_goTo(uint8 a_row , uint8 a_col){
+	uint8 address;
+	switch(a_row){
+	case 0:
+		address = 128 + a_col;
+		break;
+	case 1:
+		address = 128 + a_col + 0x40;
+		break;
+#if (LCD_ROW_NUM == 4)
+	case 2:
+		address = 128 + a_col + 0x10;
+		break;
+	case 3:
+		address = 128 + a_col + 0x50;
+		break;
+#endif
+	default :
+		break;
+	}
+	LCD_sendCommand(address);
 }
